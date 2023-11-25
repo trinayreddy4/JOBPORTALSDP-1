@@ -1,0 +1,19 @@
+body{
+    background: #3399ff;
+  }
+.container{
+    width: 100vw;
+    height: 100vh;
+}
+.RegMenu{
+    padding: 15px;
+    background-color: white;
+    min-width: 40%;
+    min-height: 60%;
+    max-width: 40%;
+    margin: 10vh auto;
+    border-radius: 15px;
+}
+.head{
+    padding: 15px;
+}

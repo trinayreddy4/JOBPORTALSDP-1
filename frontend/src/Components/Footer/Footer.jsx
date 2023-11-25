@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './Footer.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import styles from './Footer.module.css';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Footer = () => {
   return (
     <footer class="text-center text-lg-start bg-light text-muted">
