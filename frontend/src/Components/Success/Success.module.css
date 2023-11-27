@@ -1,0 +1,46 @@
+body{
+    background: #258df5;
+}
+.container{
+    width: 100vw;
+    height: 100vh;
+}
+.RegMenu{
+    padding: 15px;
+    background-color: white;
+    min-width: 40%;
+    min-height: 60%;
+    max-width: 40%;
+    margin: 10vh auto;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.instruction{
+    padding-top: 25px;
+    font-size: 26px;
+    font-weight: 700;
+}
+a{
+    all:unset;
+    position: relative;
+    font-size: 16px;
+    font-weight: 600;
+}
+a:after{
+    content: "";
+    position: absolute;
+    background-color: white;
+    height: 3px;
+    width: 0;
+    left: 0;
+    bottom:-10px;
+}
+a:hover:after{
+    width: 100%;
+}
+a:hover{
+    cursor: pointer;
+}

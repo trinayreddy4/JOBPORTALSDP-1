@@ -1,14 +1,28 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import styles from './Register.module.css';
+import {useNavigate} from 'react-router-dom'
+import Axios from 'axios';
 const Register = () => {
   
   const [username,setUsername]=useState("");
   const [company,setCompany]=useState("");
-  const [designation,setDesignation]=useState("")
+  const [designation,setDesignation]=useState("CTO");
   const [password,setPassword]=useState("");
   const [CnfPassword,setCnfPassword]=useState("");
   const [email,setEmail]=useState("");
-  console.log(username,company,designation,password,CnfPassword,email);
+  const navigate=useNavigate();
+  const handleSubmit=(e)=>{
+      e.preventDefault();
+  Axios.post('http://localhost:5000/api/createUser',{
+      username:username,
+      email:email,
+      companyName:company,
+      designation:designation,
+      password:password,
+      
+  }).then(navigate('/registerSuccess')).catch((e)=>console.log(e));
+}
+  console.log(CnfPassword);
   return (
     <>
       <div className={styles.container}>
@@ -34,7 +48,7 @@ const Register = () => {
               <div class="mb-3 px-3">
               <label for="exampleFormControlInput1" class="form-label"><h5>Designation</h5></label>
               <select class="form-select  mb-3" aria-label="Large select example" onChange={e=>setDesignation(e.target.value)}>
-                    <option value="CTO">CTO</option>
+                    <option selected value="CTO">CTO</option>
                     <option value="HR">HR</option>
                     <option value="LEAD-TALENT ACQUISTION">LEAD-TALENT ACQUISTION</option>
                     <option value="Others" >Others</option>
@@ -42,14 +56,14 @@ const Register = () => {
               </div>
               <div class="mb-3 px-3">
                     <label for="exampleFormControlInput1" class="form-label"><h5>Password</h5></label>
-                    <input class="form-control" id="name" name="password" placeholder="Password" onChange={e=>setPassword(e.target.value)}/>
+                    <input type='password' class="form-control" id="name" name="password" placeholder="Password" onChange={e=>setPassword(e.target.value)}/>
               </div>
               <div class="mb-3 px-3">
                     <label for="exampleFormControlInput1" class="form-label"><h5>Confirm Password</h5></label>
-                    <input class="form-control" id="name" name="pass2" placeholder="Confirm Password" onChange={e=>setCnfPassword(e.target.value)}/>
+                    <input type='password' class="form-control" id="name" name="pass2" placeholder="Confirm Password" onChange={e=>setCnfPassword(e.target.value)}/>
               </div>
                     <center>
-                      <button type="button" class="btn btn-primary">Register</button>
+                      <button onClick={handleSubmit} type="button" class="btn btn-primary">Register</button>
                     </center> 
               </form>
           </div>

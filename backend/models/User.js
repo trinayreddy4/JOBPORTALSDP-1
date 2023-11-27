@@ -6,10 +6,20 @@ const User=mongoose.Schema({
             required:true,
             unique:true
         },
+        email:{
+            type:String,
+            required:true
+        },
+        companyName:{
+            type:String,
+            required:true
+        },
+        designation:{
+            type:String
+        },
         password:{
             type:String,
-            required:true,
-            unique:true
+            required:true
         }
 });
 
