@@ -5,6 +5,7 @@ import { Route,Routes} from 'react-router-dom'
 import Login from '../Login/Login'
 import Register from '../Register/Register'
 import Success from '../Success/Success'
+import Profile from '../Profile/Profile'
 
 const RoutesFold = () => {
   return(
@@ -13,7 +14,8 @@ const RoutesFold = () => {
             <Route path='/register' element={<Register/>}/>
             <Route path='/registerSuccess' element={<Success/>}/>
             <Route element={<Template/>}>
-                  <Route index element={<DashBoard/>}/>
+                  <Route path='/' index element={<DashBoard/>}/>
+                  <Route path='/profile' element={<Profile/>}/>
             </Route>
         </Routes>
   )

@@ -1,0 +1,30 @@
+.container{
+    min-height: 1000px;
+}
+.profilePic{
+    height: 300px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profilePic img{
+    border-radius: 50%;
+}
+.cont2{
+    margin-top: 100px;
+    background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
+
+}
+.profCont{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    /* background-color: black; */
+    max-width: 80vw;
+    min-height: 800px;
+    margin: 0 auto;
+}
+.pro{
+    
+}

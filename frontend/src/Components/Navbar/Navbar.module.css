@@ -20,3 +20,7 @@
     list-style-type:none ;
     gap: 24px;
 }
+.menu a{
+    all:unset;
+    cursor: pointer;
+}

@@ -1,7 +1,5 @@
-body{
-    background: #258df5;
-}
 .container{
+    background: #258df5;
     width: 100vw;
     height: 100vh;
 }
@@ -22,25 +20,4 @@ body{
     padding-top: 25px;
     font-size: 26px;
     font-weight: 700;
-}
-a{
-    all:unset;
-    position: relative;
-    font-size: 16px;
-    font-weight: 600;
-}
-a:after{
-    content: "";
-    position: absolute;
-    background-color: white;
-    height: 3px;
-    width: 0;
-    left: 0;
-    bottom:-10px;
-}
-a:hover:after{
-    width: 100%;
-}
-a:hover{
-    cursor: pointer;
 }

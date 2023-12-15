@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Navbar.module.css';
-import img from '../../assets/iconwhite.png'
+import img from '../../assets/iconwhite.png';
+import {NavLink} from 'react-router-dom';
 const Navbar = () => {
   return (
     <nav className={styles.navb}>
@@ -23,8 +24,8 @@ const Navbar = () => {
             <li><a class="dropdown-item" href="/">Pending</a></li>
           </ul>
         </li>
-          <li>MY PROFILE</li>
-          <li>LOGIN</li>
+          <NavLink to='/profile'>MY PROFILE</NavLink>
+          <NavLink to='/login'>LOGIN</NavLink>
         </ul>
       </div>
     </nav>
