@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './Login.module.css';
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
@@ -17,6 +18,7 @@ const Login = () => {
       e.preventDefault();
       
   }
+  const navigate=useNavigate();
   return (
     <div className={styles.container}>
       <div className={styles.rectangle}>
@@ -77,7 +79,7 @@ const Login = () => {
                   </div>
               
           </div>
-          <div>
+          <div onClick={navigate('/register')}>
             <h5>Register With Us</h5>
           </div>
       </div>
