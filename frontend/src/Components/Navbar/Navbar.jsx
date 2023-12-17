@@ -16,7 +16,7 @@ const Navbar = () => {
           <a class="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             MY APPLICATIONS
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu p-3">
             <li><a class="dropdown-item" href="/">Accepted</a></li>
             <li><hr class="dropdown-divider"/></li>
             <li><a class="dropdown-item" href="/">Rejected</a></li>
