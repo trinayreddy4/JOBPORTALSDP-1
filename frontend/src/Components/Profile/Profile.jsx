@@ -5,6 +5,13 @@ import uploadPng from '../../assets/upload.svg';
 const Profile = () => {
   const [firstName,setFirstName]=useState(`john Doe`);
   const [lastName,setLastName]=useState(`Malireddy`);
+  const [gender,setGender]=useState('Male');
+  const [contact,setContact]=useState('+917207724648');
+  const [address,setAddress]=useState('Beech Creek, PA, Pennsylvania');
+  const [permanentAddress,setPermanentAddress]=useState('Arlington Heights, IL, Illinois');
+  const [email,setEmail]=useState('2200030815@kluniversity.in');
+  const [birthday,setBirthday]=useState(12-11-2004);
+  const [experience,setExperience]=useState([]);
   
   return (
     <div className={`${styles.container} `}>
@@ -45,29 +52,29 @@ const Profile = () => {
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold prose prose-lg dark:prose-invert">Gender</div>
-                                <div class="px-4 py-2 prose prose-md">Female</div>
+                                <div class="px-4 py-2 prose prose-md">{gender}</div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold prose prose-lg dark:prose:invert">Contact No.</div>
-                                <div class="px-4 py-2 prose prose-md dark:prose-invert">+11 998001001</div>
+                                <div class="px-4 py-2 prose prose-md dark:prose-invert">{contact}</div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold prose prose-lg dark:prose-invert ">Current Address</div>
-                                <div class="px-4 py-2 prose prose-md">Beech Creek, PA, Pennsylvania</div>
+                                <div class="px-4 py-2 prose prose-md">{address}</div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold prose prose-lg dark:prose-invert">Permanant Address</div>
-                                <div class="px-4 py-2 prose prose-md dark:prose-invert">Arlington Heights, IL, Illinois</div>
+                                <div class="px-4 py-2 prose prose-md dark:prose-invert">{permanentAddress}</div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold prose prose-lg dark:prose-invert">Email.</div>
                                 <div class="px-4 py-2">
-                                    <a class="text-blue-800 prose prose-md dark:prose-invert" href="mailto:jane@example.com">jane@example.com</a>
+                                    <a class="text-blue-800 prose prose-md dark:prose-invert" href={`mailto:${email}`}>{email}</a>
                                 </div>
                             </div>
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-2 font-semibold prose prose-lg dark:prose-invert">Birthday</div>
-                                    <div class="px-4 py-2 prose prose-md dark:prose-invert">Feb 06, 1998</div>
+                                    <div class="px-4 py-2 prose prose-md dark:prose-invert">{birthday}</div>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +95,22 @@ const Profile = () => {
                                 <span class="tracking-wide prose prose-xl dark:prose-invert">Experience</span>
                             </div>
                             <ul class="list-inside space-y-2">
-                                <li>
+                                {
+                                    experience.length()!==0?(
+                                    experience.map(
+                                        (r)=>
+                                        <li>
+                                            <div class="text-teal-600">{r.description}</div>
+                                            <div class="text-gray-500 text-xs">{r.timeline}</div>
+                                        </li>
+                                    )):(
+                                        <li>
+                                            <div class='text-teal-600'>No Experience</div>
+                                        </li>
+                                    )
+                                }
+                                
+                                {/* <li>
                                     <div class="text-teal-600">Owner at Her Company Inc.</div>
                                     <div class="text-gray-500 text-xs">March 2020 - Now</div>
                                 </li>
@@ -99,11 +121,7 @@ const Profile = () => {
                                 <li>
                                     <div class="text-teal-600">Owner at Her Company Inc.</div>
                                     <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                                </li>
-                                <li>
-                                    <div class="text-teal-600">Owner at Her Company Inc.</div>
-                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                         <div>
