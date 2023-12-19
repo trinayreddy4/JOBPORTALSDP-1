@@ -68,7 +68,7 @@ const Profile = () => {
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold prose prose-lg dark:prose-invert">Email.</div>
-                                <div class="px-4 py-2">
+                                <div class="px--3 py-2">
                                     <a class="text-blue-800 prose prose-md dark:prose-invert" href={`mailto:${email}`}>{email}</a>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@ const Profile = () => {
                             </div>
                             <ul class="list-inside space-y-2">
                                 {
-                                    experience.length()!==0?(
+                                    experience.length!==0?(
                                     experience.map(
                                         (r)=>
                                         <li>
