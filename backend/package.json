@@ -4,6 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "start": "react-scripts --env=development start",
+    "build:staging": "react-scripts --env=staging build",
+    "build:production": "react-scripts --env=production build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js"
   },
