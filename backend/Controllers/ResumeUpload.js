@@ -10,7 +10,7 @@ const storage=multer.diskStorage(
             cb(null,'uploads/resumes/');
         },
         filename: (req,res,cb)=>{
-            cb(null,uuidv4());
+            cb(null,req.body.id);
         }
     }
 );

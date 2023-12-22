@@ -44,7 +44,7 @@ const student=mongoose.Schema(
             type:[experience]
         },
         resume:{
-            type:Buffer
+            type:String
         }
     }
 );
