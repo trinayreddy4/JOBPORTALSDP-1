@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './Profile.module.css';
 import dummyPP from '../../assets/dummyPP.png';
 import uploadPng from '../../assets/upload.svg';
+import axios from 'axios';
 const Profile = () => {
   const [firstName,setFirstName]=useState(`john Doe`);
   const [lastName,setLastName]=useState(`Malireddy`);
@@ -10,9 +11,18 @@ const Profile = () => {
   const [address,setAddress]=useState('Beech Creek, PA, Pennsylvania');
   const [permanentAddress,setPermanentAddress]=useState('Arlington Heights, IL, Illinois');
   const [email,setEmail]=useState('2200030815@kluniversity.in');
+  const [id,setId]=useState(2200030815);
   const [birthday,setBirthday]=useState(12-11-2004);
   const [experience,setExperience]=useState([]);
-  
+  const [resume,setResume]=useState();
+  const handleClick=async (e)=>{
+    e.preventDefault();
+    const formData=new FormData();
+    // console.log(resume);
+    formData.append('id',id);
+    formData.append('file',resume);
+    await axios.post('http://localhost:5000/resumeUpload',formData).then((e)=>alert(e)).catch((err)=>alert(err));
+  }
   return (
     <div className={`${styles.container} `}>
         <div className={styles.cont2}>
@@ -75,6 +85,12 @@ const Profile = () => {
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-2 font-semibold prose prose-lg dark:prose-invert">Birthday</div>
                                     <div class="px-4 py-2 prose prose-md dark:prose-invert">{birthday}</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class='grid grid-cols-1'>
+                                    <div class='px-4 py-2 font-semibold prose prose-lg dark:prose-invert'>Id Number</div>
+                                    <div class='px-4 py-2 prose prose-md dark:prose-invert'>{id}</div>
                                 </div>
                             </div>
                         </div>
@@ -158,8 +174,13 @@ const Profile = () => {
                             Edit Profile
                         </button>
                     </div>
+                    <div>
+                        <br />
+                        <input type="file" accept='application/pdf' onChange={(e)=>setResume(e.target.files[0])} />
+                        <br />
+                    </div>
                     <div className='my-2'>
-                        <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                        <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" onClick={handleClick}>
                                 <img src={uploadPng} alt="Upload" width='25px' height='25px' />
                                 <span>Upload Resume</span>
                         </button>
