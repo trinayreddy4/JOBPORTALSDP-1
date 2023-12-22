@@ -1,6 +1,7 @@
 const {v4:uuidv4}=require('uuid');
 const multer = require('multer');
 const express=require('express');
+const { findByIdAndUpdate } = require('../models/Experiences');
 const router=express.Router();
 
 const storage=multer.diskStorage(
@@ -34,4 +35,5 @@ router.post('uploads/resume',upload.single('file'),async (req,res)=>{
           console.log('File uploaded successfully');
           res.send('File uploaded successfully');
         });
+        const student=findByIdAndUpdate()
 });
