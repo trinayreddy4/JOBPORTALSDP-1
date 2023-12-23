@@ -12,8 +12,5 @@ app.use(express.json());
 mongoose.connect('mongodb+srv://trinayreddy4:2200030815@cluster0.mybkgab.mongodb.net/?retryWrites=true&w=majority').then(()=>console.log('Connected to MongoDB')).catch(err=>console.log(err));
 
 app.use('/api',UserControllers);
-app.post('/resumeUpload',resumeUpload.single('file'),(req,res)=>{
-    res.status(200).send("File Uploadation Success");
-}
-)
+app.use('/upload',resumeUpload);
 app.listen(port,()=>console.log(`server listening ${port}`));

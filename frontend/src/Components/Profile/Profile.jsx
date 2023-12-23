@@ -21,7 +21,7 @@ const Profile = () => {
     // console.log(resume);
     formData.append('id',id);
     formData.append('file',resume);
-    await axios.post('http://localhost:5000/resumeUpload',formData).then((e)=>alert(e)).catch((err)=>alert(err));
+    await axios.post('http://localhost:5000/upload/resume',formData).then((e)=>alert(e)).catch((err)=>alert(err));
   }
   return (
     <div className={`${styles.container} `}>
