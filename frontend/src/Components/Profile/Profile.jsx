@@ -83,7 +83,7 @@ const Profile = () => {
                                 </div>
                             </div>
                                 <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold prose prose-lg dark:prose-invert">Birthday</div>
+                                    <div class="px-4 py-2 font-semibold prose prose-lg ">Birthday</div>
                                     <div class="px-4 py-2 prose prose-md dark:prose-invert">{birthday}</div>
                                 </div>
                             </div>

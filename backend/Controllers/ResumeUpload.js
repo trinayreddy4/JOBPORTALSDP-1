@@ -1,21 +1,24 @@
 // const {v4:uuidv4}=require('uuid');
 const multer = require('multer');
+const fileSystem=require('fs');
 const express=require('express');
+const mongodb=require('mongodb');
 const router=express.Router();
 const pdfSchema=require('../models/Pdfschema');
-const storage=multer.diskStorage(
-    {
-        destination:(req,res,cb)=>{
-            cb(null,'./uploads/resumes');
-        },
-        filename: (req,res,cb)=>{
-            cb(null,`${req.body.id}.pdf`);
-        }
-    }
-);
-const upload=multer({storage:storage});
+const connection=require('../config');
+// const storage=multer.diskStorage(
+//     {
+//         destination:(req,res,cb)=>{
+//             cb(null,'./uploads/resumes');
+//         },
+//         filename: (req,res,cb)=>{
+//             cb(null,`${req.body.id}.pdf`);
+//         }
+//     }
+// );
+// const upload=multer({storage:storage});
 
-router.post('/resume',upload.single('file'),async (req,res)=>{
+router.post('/resume',async (req,res)=>{
         // const file=req.file;
         // if(!file)
         // {
@@ -36,14 +39,18 @@ router.post('/resume',upload.single('file'),async (req,res)=>{
         // });
         // // const student=findByIdAndUpdate()
         const title=req.body.id;
-        const file=req.file.filename;
-        try{
-            await pdfSchema.create({title:title,pdf:file});
-            res.status(200).send("Successfull");
-        }
-        catch(e)
-        {
-            res.status(500).send("Mission Failed Respect --");
-        }
+        const file=req.files.file;
+        const bucket=mongodb.GridFSBucket(connection.db);
+
+        fileSystem.createReadStream(file.path).pipe(bucket.openUploadStream(filePath,{
+                chunkSizeBytes:104876,
+                metadata:{
+                    name:file.name,
+                    size:file.size,
+                    type:file.type
+                }
+        })).on('finish',()=>{
+            res.status(200).send("Success");
+        })
     });
 module.exports=router;
