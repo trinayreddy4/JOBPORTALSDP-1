@@ -1,56 +1,44 @@
-// const {v4:uuidv4}=require('uuid');
 const multer = require('multer');
-const fileSystem=require('fs');
+const GridFsStorage=require('multer-gridfs-storage').GridFsStorage;
 const express=require('express');
-const mongodb=require('mongodb');
+const Grid=require('gridfs-stream');
 const router=express.Router();
+const bcrypt=require('bcrypt');
 const pdfSchema=require('../models/Pdfschema');
-const connection=require('../config');
-// const storage=multer.diskStorage(
-//     {
-//         destination:(req,res,cb)=>{
-//             cb(null,'./uploads/resumes');
-//         },
-//         filename: (req,res,cb)=>{
-//             cb(null,`${req.body.id}.pdf`);
-//         }
-//     }
-// );
-// const upload=multer({storage:storage});
+const dotenv=require('dotenv')
 
-router.post('/resume',async (req,res)=>{
-        // const file=req.file;
-        // if(!file)
-        // {
-        //     res.status(400).send("No File Uploaded");
-        //     return ;
-        // }
-        // const gfs=GridFSBucket(mongoose.connection.db);
-        // const writeStream=fs.openUploadStream(file.originalname);
-        // const readStream=fs.createReadStream(file.path);
-        // readStream.pipe(writeStream)
-        // .on('error', (err) => {
-        //   console.error(err);
-        //   res.status(500).send('Error uploading file');
-        // })
-        // .on('finish', () => {
-        //   console.log('File uploaded successfully');
-        //   res.send('File uploaded successfully');
-        // });
-        // // const student=findByIdAndUpdate()
-        const title=req.body.id;
-        const file=req.files.file;
-        const bucket=mongodb.GridFSBucket(connection.db);
+dotenv.config();
 
-        fileSystem.createReadStream(file.path).pipe(bucket.openUploadStream(filePath,{
-                chunkSizeBytes:104876,
-                metadata:{
-                    name:file.name,
-                    size:file.size,
-                    type:file.type
-                }
-        })).on('finish',()=>{
-            res.status(200).send("Success");
+// console.log(process.env.MONGO_URI)
+const storage=new GridFsStorage({
+    url:process.env.MONGO_URI,
+    file:(req,file)=>{
+        return new Promise(async (resolve,reject)=>{
+            const fname=await bcrypt.hash(req.body.id,10);
+            const fileInfo={
+                filename:fname,
+                bucketname:'resume'
+            };
+            resolve(fileInfo);
         })
-    });
+    }
+});
+const upload=multer({storage:storage});
+router.post('/resume',upload.single('file'),async (req,res)=>{
+        let re=new Pdfschema({
+            pdf:req.file.filename,
+            title:req.file.id
+        })
+        let pdfId=re._id;
+        await re.save().then(()=>{
+            res.status(200).send("Successfull")
+        }).catch((e)=>alert(e))
+        
+        const s=Student.findByIdAndUpdate({id:req.body.id},{$set:{resume:pdfId}})
+        await s.save();
+    }
+)
+router.get('/resume',async (req,res)=>{
+        
+});
 module.exports=router;
